@@ -1,8 +1,8 @@
-## iTribune
+# iTribune
 
 Educational platform using Django framework for backend development and React for a dynamic frontend experience.
 
-# Django Backend
+## Django Backend
 Models, views, templates, and database management.
 
 Authentication, authorization, and user management systems to safeguard platform.
@@ -15,7 +15,7 @@ Interactive Learning Features: discussion forums to enhance the learning experie
 
 API Development and Integrations
 
-# React Frontend
+## React Frontend
 Designing a Dynamic User Interface: Create a visually appealing and intuitive frontend interface for learners and instructors alike.
 
 Enhanced Search and Navigation: Implement advanced search and filtering functionalities to help users discover relevant courses efficiently.
@@ -24,7 +24,7 @@ Interactive Learning Experience: Develop features for real-time progress trackin
 
 Communication and Collaboration: Facilitate communication between instructors and learners through messaging systems and discussion threads.
 
-# Extra Features:
+## Extra Features:
 Payment Integration: Integrate secure payment gateways to enable course purchase management using Stripe and PayPal.
 
 Analytics and Reporting: Track key metrics such as student and course management and revenue generation to drive informed decision-making.
