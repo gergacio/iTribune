@@ -135,6 +135,8 @@ STATIC_ROOT = BASE_DIR / 'templates'
 MEDIA_URL = '/media/' # 127.0.0.1/media/avatar.jpg
 
 MEDIA_ROOT = BASE_DIR / 'media'
+
+AUTH_USER_MODEL = 'userauths.User' # way to django will found user model using User class in userauths!!
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -248,8 +250,8 @@ JAZZMIN_UI_TWEAKS = {
     "body_small_text": True,
     "brand_small_text": False,
     "brand_colour": "navbar-primary",
-    "accent": "accent-indigo",
-    "navbar": "navbar-indigo navbar-dark",
+    "accent": "accent-lime",
+    "navbar": "navbar-white navbar-light",
     "no_navbar_border": False,
     "navbar_fixed": False,
     "layout_boxed": False,
