@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db.models.signals import post_save
 
 # Create your custom models here.
 
@@ -43,3 +44,15 @@ class Profile(models.Model): # profile model keeps core user info
         super(Profile, self).save(*args, **kwargs)    
 
         # install models in admin section
+
+
+def create_user_profile(sender, instance, created, **kwargs):
+    if created: # if user created will be created new profile
+        Profile.objects.create(user=instance)
+
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
+post_save.connect(create_user_profile, sender=User)
+post_save.connect(save_user_profile, sender=User)
+# when User model get saved will trigger create_user_profile
