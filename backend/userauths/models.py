@@ -8,7 +8,7 @@ class User(AbstractUser):
     username = models.CharField(max_length=150, unique=True)
     email = models.EmailField(unique=True)
     full_name = models.CharField(max_length=100)
-    otp = models.CharField(max_length=100, unique=True)
+    otp = models.CharField(max_length=100, null=True, blank=True)
 
     USERNAME_FIELD = "email" # place email for login username instead
     REQUIRED_FIELDS = ["username"] # required fields for creating a user
