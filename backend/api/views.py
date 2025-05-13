@@ -54,6 +54,7 @@ class PasswordResetEmailVerifyAPIView(generics.RetrieveAPIView):
         return user
 
 class PasswordChangeAPIView(generics.CreateAPIView):
+
     permission_classes = [AllowAny]
     serializer_class = api_serializer.UserSerializer
 
@@ -71,3 +72,6 @@ class PasswordChangeAPIView(generics.CreateAPIView):
             return Response({"message": "Password Changed Successfully"}, status=status.HTTP_201_CREATED)
         else:
             return Response({"message": "User Does Not Exists"}, status=status.HTTP_404_NOT_FOUND)
+            
+
+
