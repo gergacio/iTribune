@@ -17,7 +17,6 @@ from datetime import timedelta
 import os
 
 from environs import Env
-
 env = Env()
 env.read_env()
 
@@ -56,6 +55,7 @@ INSTALLED_APPS = [
 	'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders', # let us to make call from external apps
+    'anymail',
    
 
 ]
@@ -153,8 +153,17 @@ AUTH_USER_MODEL = 'userauths.User' # way to django will found user model using U
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-MAILGUN_SECRET_KEY = env('MAILGUN_SECRET_KEY')
+MAILGUN_API_KEY = env("MAILGUN_API_KEY")
+MAILERSEND_API_TOKEN = env("MAILERSEND_API_TOKEN")
+MAILGUN_SENDER_DOMAIN = env("MAILGUN_SENDER_DOMAIN")
 
+ANYMAIL = {
+    MAILERSEND_API_TOKEN : env("MAILERSEND_API_TOKEN"),
+    MAILGUN_SENDER_DOMAIN : env("MAILGUN_SENDER_DOMAIN")
+}
+
+FROM_EMAIL = env("FROM_EMAIL")
+EMAIL_BACKEND="anymail.backend.mailgun.EmailBackend"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
