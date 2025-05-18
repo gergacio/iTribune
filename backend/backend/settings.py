@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders', # let us to make call from external apps
     'anymail',
+    'drf_yasg', # for swager
    
 
 ]
