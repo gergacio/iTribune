@@ -1,5 +1,8 @@
 from django.shortcuts import render
 import random
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.conf import settings
 
 from requests import Response
 
@@ -47,13 +50,30 @@ class PasswordResetEmailVerifyAPIView(generics.RetrieveAPIView):
 
             link = f"http://localhost:5173/create-new-password/?otp={user.otp}&uuidb64={uuidb64}&refresh_token={refresh_token}"
 
+            context = {  
+                "link": link,
+                "username": user.username,
+
+            }
+            subject = "Password reset email"
+            text_body = render_to_string("email/password_reset.txt", context) # when render we pass template and context
+            html_body = render_to_string("email/password_reset.html", context)
            
+            msg = EmailMultiAlternatives(
+               subject=subject,
+               from_email=settings.FROM_EMAIL,
+               to=[user.email],
+               body=text_body
+           )
+            msg.attach_alternative(html_body, "text/html")
+            msg.send()
     
 
             print("link ======", link)
         return user
 
 class PasswordChangeAPIView(generics.CreateAPIView):
+
     permission_classes = [AllowAny]
     serializer_class = api_serializer.UserSerializer
 
@@ -71,3 +91,6 @@ class PasswordChangeAPIView(generics.CreateAPIView):
             return Response({"message": "Password Changed Successfully"}, status=status.HTTP_201_CREATED)
         else:
             return Response({"message": "User Does Not Exists"}, status=status.HTTP_404_NOT_FOUND)
+            
+
+
