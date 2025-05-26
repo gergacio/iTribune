@@ -13,7 +13,7 @@ export const login = async(email, password) => {
         
         if (status === 2000) { 
             setAuthUser(data.access, data.refresh); // set data to the cookie
-            alert("login successful")
+           
         }
         return {data, error: null}
 
@@ -32,19 +32,20 @@ export const login = async(email, password) => {
 
 export const register = async(full_name, email, password, password2) => { 
     try {
-        const { data } = await axios.post(`/user/register/`, { full_name, email, password, password2 }); // {full_name, email} data send back 
-        alert("registration successful")
+        const { data } = await axios.post(`/user/register/`,
+            { full_name, email, password, password2 }); // {full_name, email} data send back 
+     
         await login(email, password); // if want to login after register
         
         return {data, error: null}
-
-
-       
+  
 
     } catch (error) { 
-       return {
+      
+        
+        return {
             data: null,
-            error: error.response.data?.detail || "Something went wrong"
+            error: `${error.response.data.full_name} - ${error.response.data.email}` || "Something went wrong"
         }
     }
 
