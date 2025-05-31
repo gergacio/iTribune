@@ -5,6 +5,7 @@ import PrivateRoutes from './layouts/PrivateRoute';
 
 import Register from '../src/views/auth/Register';
 import Login from '../src/views/auth/Login';
+import Logout from './views/auth/Logout';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path='/register/' element={<Register />} />
           <Route path='/login/' element={<Login />} />    
+          <Route path='/logout/' element={<Logout />} />    
         </Routes>
       </MainWrapper>
     </BrowserRouter>
