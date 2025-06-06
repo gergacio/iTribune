@@ -7,6 +7,7 @@ from django.conf import settings
 from requests import Response
 
 from api import serializer as api_serializer
+from api import models as api_models
 from userauths.models import User, Profile
 
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -74,6 +75,7 @@ class PasswordResetEmailVerifyAPIView(generics.RetrieveAPIView):
 
 class PasswordChangeAPIView(generics.CreateAPIView):
 
+
     permission_classes = [AllowAny]
     serializer_class = api_serializer.UserSerializer
 
@@ -94,3 +96,7 @@ class PasswordChangeAPIView(generics.CreateAPIView):
             
 
 
+class CategoryListAPIView(generics.ListAPIView):
+    queryset = api_models.Category.objects.filter(active=True)  
+    serializer_class = api_serializer.CategorySerializer
+    permission_classes = [AllowAny]
